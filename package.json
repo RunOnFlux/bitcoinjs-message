@@ -1,14 +1,14 @@
 {
-  "name": "bitcoinjs-message",
-  "version": "2.2.0",
+  "name": "@runonflux/bitcoinjs-message",
+  "version": "2.3.0",
   "description": "bitcoinjs-message",
   "keywords": [
     "bitcoinjs-message",
     "bitcoin"
   ],
-  "homepage": "https://github.com/bitcoinjs/bitcoinjs-message",
+  "homepage": "https://github.com/runonflux/bitcoinjs-message",
   "bugs": {
-    "url": "https://github.com/bitcoinjs/bitcoinjs-message/issues"
+    "url": "https://github.com/runonflux/bitcoinjs-message/issues"
   },
   "license": "MIT",
   "files": [
@@ -19,7 +19,7 @@
   "types": "./index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bitcoinjs/bitcoinjs-message.git"
+    "url": "git+https://github.com/runonflux/bitcoinjs-message.git"
   },
   "scripts": {
     "coverage": "nyc tape test/*.js",
@@ -45,5 +45,9 @@
   },
   "engines": {
     "node": ">=0.10"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "author": "Influx Technologies Ltd."
 }
