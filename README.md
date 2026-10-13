@@ -100,7 +100,7 @@ bitcoinMessage.signAsync(message, signer, keyPair.compressed).then(signature => 
 // => 'H9L5yLFjti0QTHhPyFrZCT1V/MMnBtXKmoiKDZ78NDBjERki6ZTQZdSMCtkgoNmp17By9ItJr8o7ChX0XxY91nk='
 ```
 
-> verify(message, address, signature[, network.messagePrefix, checkSegwitAlways])
+> verify(message, address, signature[, network.messagePrefix, checkSegwitAlways, pubKeyHash, scriptHash])
 
 Verify a Bitcoin message
 ``` javascript
@@ -108,7 +108,20 @@ var address = '1F3sAm6ZtwLAUnj7d38pGFxtP3RVEvtsbV'
 
 console.log(bitcoinMessage.verify(message, address, signature))
 // => true
+
+// Bind the address version to the network and to the signature type
+// (recommended whenever the network is known):
+console.log(bitcoinMessage.verify(message, address, signature, null, false, '00', '05'))
+// => true
 ```
+
+`pubKeyHash` / `scriptHash` are the hex P2PKH / P2SH version prefixes of the
+address's network (e.g. `'00'`/`'05'` for Bitcoin, `'1cb8'`/`'1cbd'` for Flux).
+When `pubKeyHash` is given, a legacy (P2PKH) signature only verifies against an
+address with exactly that prefix, and a P2SH-P2WPKH signature never verifies
+against it; `scriptHash` binds P2SH-P2WPKH signatures the same way. Without
+them the version prefix is assumed to be one byte and is not checked (legacy
+behaviour). P2WPKH signatures only match version-0, 20-byte witness programs.
 
 ## About Electrum segwit signature support
 

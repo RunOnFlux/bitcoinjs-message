@@ -56,6 +56,12 @@ export function verify(
   message: string | Buffer,
   address: string,
   signature: string | Buffer,
-  messagePrefix?: string,
-  checkSegwitAlways?: boolean
+  messagePrefix?: string | null,
+  checkSegwitAlways?: boolean,
+  // hex P2PKH version prefix of the address's network, e.g. '00' (Bitcoin),
+  // '1cb8' (Flux). When given, the address version is enforced.
+  pubKeyHash?: string | null,
+  // hex P2SH version prefix, e.g. '05' (Bitcoin). When given, P2SH-P2WPKH
+  // signatures only verify against addresses with this prefix.
+  scriptHash?: string | null
 ): boolean;
